@@ -1,8 +1,13 @@
 import React from "react";
-import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import CharacterInfo from "./components/CharacterInfo";
 
 function App() {
-  return <div></div>;
+  return (
+    <>
+      <CharacterInfo />
+    </>
+  );
 }
 
 export default App;
