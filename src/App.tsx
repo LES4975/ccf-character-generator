@@ -1,11 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import CharacterInfo from "./components/CharacterInfo";
+import Profile from "./components/Profile";
 
 function App() {
   return (
     <>
-      <CharacterInfo />
+      <h1>Character Form</h1>
+      <Profile />
     </>
   );
 }

@@ -32,7 +32,7 @@ function SettingColor() {
     setColor(color.hex);
   };
   return (
-    <div>
+    <>
       <ColorInput />
       <button onClick={onClick}>컬러피커</button>
       {display ? (
@@ -41,7 +41,7 @@ function SettingColor() {
           <ChromePicker color={color} onChange={onChange} disableAlpha={true} />
         </>
       ) : null}
-    </div>
+    </>
   );
 }
 
