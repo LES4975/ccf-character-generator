@@ -2,20 +2,25 @@ import { styled } from "styled-components";
 import { Character } from "../../types/Character";
 import { useState } from "react";
 
-interface InputProps {
+interface ITextarea {
   prop: keyof Character;
 }
 
-const InputComponent = ({ prop }: InputProps) => {
+const Memo = styled.textarea`
+  resize: none;
+  width: 100%;
+`;
+
+const TextareaComponent = ({ prop }: ITextarea) => {
   const [value, setValue] = useState("");
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setValue(event.target.value);
   return (
     <>
       <span>{prop}</span>
-      <input key={prop} value={value} onChange={handleChange} />
+      <Memo key={prop} placeholder="캐릭터 메모" rows={10} />
     </>
   );
 };
 
-export default InputComponent;
+export default TextareaComponent;

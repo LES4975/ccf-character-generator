@@ -11,3 +11,18 @@ export const valuesState = atom<Partial<Character>>({
   key: "valuesState",
   default: {},
 });
+
+interface IStatus {
+  label: string;
+  value: number;
+  max?: number;
+}
+export const statusState = atom<Partial<IStatus>>({
+  key: "statusState",
+  default: {},
+});
+
+export const statusListState = atom<IStatus[]>({
+  key: "statusListState",
+  default: {},
+});
