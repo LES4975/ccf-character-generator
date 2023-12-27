@@ -17,12 +17,7 @@ interface IStatus {
   value: number;
   max?: number;
 }
-export const statusState = atom<Partial<IStatus>>({
+export const statusState = atom<Partial<IStatus[]>>({
   key: "statusState",
-  default: {},
-});
-
-export const statusListState = atom<IStatus[]>({
-  key: "statusListState",
-  default: {},
+  default: [],
 });

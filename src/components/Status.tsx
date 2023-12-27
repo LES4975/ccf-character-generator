@@ -10,26 +10,36 @@ interface IStatus {
   max?: number;
 }
 
-const StatusInput = (id:number) => {
+const StatusInput = () => {
   return (
-    <>
-    <button>삭제</button>
-    <InputComponent prop={`status.${id}.label`} />
-    </>
+    <li>
+      <button>-</button>
+      <input type="text" key={"label"} />
+      <input type="number" inputMode="numeric" key={"value"} />
+      <input type="number" inputMode="numeric" key={"max"} />
+    </li>
   );
 };
 
 function StatusList() {
   const [status, setStatus] = useRecoilState(statusState);
-  const statusList = useRecoilValue();
   const addStatus = useCallback(() => {
-    if()
-  }, [statusList]);
-  const onClick = () => {};
+    const newStatus: IStatus = {
+      label: "",
+      value: 0,
+    };
+    setStatus(status.concat(newStatus));
+  }, [status]);
+  console.log(status);
   return (
     <div>
       <span>스테이터스</span>
-      <button onClick={onClick}/>
+      <button onClick={addStatus} />
+      <ul>
+        {status?.map((item, index) => (
+          <StatusInput key={index} {...status} />
+        ))}
+      </ul>
     </div>
   );
 }
