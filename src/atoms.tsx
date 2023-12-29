@@ -12,7 +12,8 @@ export const valuesState = atom<Partial<Character>>({
   default: {},
 });
 
-interface IStatus {
+export interface IStatus {
+  id: number;
   label: string;
   value: number;
   max?: number;
