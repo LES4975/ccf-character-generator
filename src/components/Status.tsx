@@ -9,33 +9,23 @@ const StatusInput = ({ id, label, value, max }: IStatus) => {
       const button = event.currentTarget;
       setStatus((prev) => prev.filter((item) => item && item.id !== id));
     },
-    [setStatus]
+    [setStatus, id]
   );
-  const handleChangeLabel = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newLabel = event.target.value;
-    setStatus((prev) =>
-      prev.map((item) =>
-        item && item.id === id ? { ...item, label: newLabel } : item
-      )
-    );
-    console.log(status);
-  };
-  const handleChangeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = parseInt(event.target.value);
-    setStatus((prev) =>
-      prev.map((item) =>
-        item && item.id === id ? { ...item, value: newValue } : item
-      )
-    );
-    console.log(status);
-  };
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
 
-  const handleChangeMax = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newMax = parseInt(event.target.value);
     setStatus((prev) =>
-      prev.map((item) =>
-        item && item.id === id ? { ...item, max: newMax } : item
-      )
+      prev.map((item) => {
+        if (item && item.id === id) {
+          if (name === "label") return { ...item, label: value };
+          else if (name === "value") return { ...item, value: parseInt(value) };
+          else if (name === "max") {
+            const maxValue = value === "" ? 0 : parseInt(value);
+            return { ...item, max: maxValue };
+          }
+        }
+        return item;
+      })
     );
     console.log(status);
   };
@@ -45,23 +35,23 @@ const StatusInput = ({ id, label, value, max }: IStatus) => {
       <button onClick={deleteStatus}>-</button>
       <input
         type="text"
+        name="label"
         placeholder="라벨"
-        value={label}
-        onChange={handleChangeLabel}
+        onBlur={handleChange}
       />
       <input
         type="number"
+        name="value"
         inputMode="numeric"
         placeholder="현재치"
-        value={value}
-        onChange={handleChangeValue}
+        onBlur={handleChange}
       />
       <input
         type="number"
+        name="max"
         inputMode="numeric"
         placeholder="최대치"
-        value={max || ""}
-        onChange={handleChangeMax}
+        onBlur={handleChange}
       />
     </li>
   );
@@ -80,7 +70,7 @@ function StatusList() {
     setStatus((prev) => [...prev, newStatus]);
     setNextId((prev) => prev + 1);
   }, [status]);
-  console.log(status);
+  // console.log(status);
   return (
     <div>
       <span>스테이터스</span>
@@ -94,7 +84,7 @@ function StatusList() {
                 id={item.id}
                 label={item.label}
                 value={item.value}
-                max={item?.max || 0}
+                max={item?.max}
               />
             )
         )}
