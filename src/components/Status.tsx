@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { useRecoilState } from "recoil";
 import { IStatus, statusState } from "../atoms";
 import StatusInput from "./inputs/StatusInput";
@@ -26,7 +26,7 @@ function StatusList() {
           (item) =>
             item && (
               <StatusInput
-                key={nextId + item.id}
+                key={item.id}
                 id={item.id}
                 label={item.label}
                 value={item.value}
