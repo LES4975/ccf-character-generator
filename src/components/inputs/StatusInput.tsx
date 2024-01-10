@@ -1,6 +1,8 @@
 import { useRecoilState } from "recoil";
 import { IStatus, statusState } from "../../atoms";
 import { useCallback } from "react";
+import { Draggable } from "react-beautiful-dnd";
+import React from "react";
 
 function StatusInput({ id, label, value, max }: IStatus) {
   const [status, setStatus] = useRecoilState(statusState);
@@ -30,7 +32,7 @@ function StatusInput({ id, label, value, max }: IStatus) {
   };
 
   return (
-    <li key={id}>
+    <li>
       <button onClick={deleteStatus}>-</button>
       <input
         type="text"
@@ -56,4 +58,4 @@ function StatusInput({ id, label, value, max }: IStatus) {
   );
 }
 
-export default StatusInput;
+export default React.memo(StatusInput);
