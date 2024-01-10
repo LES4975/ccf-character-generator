@@ -1,7 +1,6 @@
 import { useRecoilState } from "recoil";
 import { IStatus, statusState } from "../../atoms";
 import { useCallback } from "react";
-import { Draggable } from "react-beautiful-dnd";
 import React from "react";
 
 function StatusInput({ id, label, value, max }: IStatus) {
@@ -19,8 +18,11 @@ function StatusInput({ id, label, value, max }: IStatus) {
       prev.map((item) => {
         if (item && item.id === id) {
           if (name === "label") return { ...item, label: value };
-          else if (name === "value") return { ...item, value: parseInt(value) };
-          else if (name === "max") {
+          else if (name === "value") {
+            const parsedValue = parseInt(value);
+            const newValue = isNaN(parsedValue) ? 0 : parsedValue;
+            return { ...item, value: newValue };
+          } else if (name === "max") {
             const maxValue = value === "" ? 0 : parseInt(value);
             return { ...item, max: maxValue };
           }
@@ -37,22 +39,25 @@ function StatusInput({ id, label, value, max }: IStatus) {
       <input
         type="text"
         name="label"
+        defaultValue={label}
         placeholder="라벨"
-        onBlur={handleChange}
+        onChange={handleChange}
       />
       <input
         type="number"
         name="value"
+        defaultValue={value}
         inputMode="numeric"
         placeholder="현재치"
-        onBlur={handleChange}
+        onChange={handleChange}
       />
       <input
         type="number"
         name="max"
+        defaultValue={max}
         inputMode="numeric"
         placeholder="최대치"
-        onBlur={handleChange}
+        onChange={handleChange}
       />
     </li>
   );

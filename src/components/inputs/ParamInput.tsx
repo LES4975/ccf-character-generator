@@ -30,14 +30,16 @@ function ParamInput({ id, label, value }: IParam) {
       <input
         type="text"
         name="label"
+        defaultValue={label}
         placeholder="매개변수"
-        onBlur={handleChange}
+        onChange={handleChange}
       />
       <input
         type="text"
         name="value"
+        defaultValue={value}
         placeholder="매개변수 값"
-        onBlur={handleChange}
+        onChange={handleChange}
       />
     </li>
   );
