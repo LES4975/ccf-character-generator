@@ -40,3 +40,9 @@ export const paramState = atom<Partial<IParam[]>>({
   default: [],
   effects_UNSTABLE: [persistAtom],
 });
+
+export const cpState = atom({
+  key: "cpState",
+  default: "",
+  effects_UNSTABLE: [persistAtom],
+});
