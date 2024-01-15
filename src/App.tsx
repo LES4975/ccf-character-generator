@@ -4,6 +4,7 @@ import Profile from "./components/Profile";
 import StatusList from "./components/Status";
 import ParamList from "./components/Parameter";
 import ChatPallete from "./components/inputs/ChattingPallete";
+import Option from "./components/Option";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <StatusList />
       <ParamList />
       <ChatPallete />
+      <Option />
     </>
   );
 }

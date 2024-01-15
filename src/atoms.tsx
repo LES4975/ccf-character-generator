@@ -46,3 +46,20 @@ export const cpState = atom({
   default: "",
   effects_UNSTABLE: [persistAtom],
 });
+
+// export interface IOption {
+//   option: boolean | undefined;
+//   secret: boolean;
+//   invisible: boolean;
+//   hideStatus: boolean;
+// }
+
+export const optionState = atom({
+  key: "optionState",
+  default: {
+    secret: false,
+    invisible: false,
+    hideStatus: false,
+  },
+  effects_UNSTABLE: [persistAtom],
+});

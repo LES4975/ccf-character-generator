@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ChromePicker, ColorResult } from "react-color";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { styled } from "styled-components";
 import { colorState } from "../atoms";
 
